@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shree Hari Clinic - Patient Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'clinic-green': '#22C55E',
+                        'clinic-green-dark': '#16A34A',
+                        'clinic-green-light': '#DCFCE7',
+                    }
+                }
+            }
+        };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 font-inter">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-clinic-green rounded-lg flex items-center justify-center">
+                        <i class="fas fa-stethoscope text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-semibold text-gray-900">Shree Hari Clinic</h1>
+                        <p class="text-sm text-gray-500">Digital Patient Records</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="text-right">
+                        <p class="text-sm font-medium text-gray-900">Dr. Haresh Savaliya</p>
+                    </div>
+                    <div class="w-8 h-8 bg-clinic-green rounded-full flex items-center justify-center">
+                        <i class="fas fa-user text-white text-sm"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Navigation Tabs -->
+        <div class="mb-8">
+            <div class="border-b border-gray-200">
+                <nav class="-mb-px flex space-x-8">
+                    <button data-tab="registration" class="tab-button active border-b-2 border-clinic-green text-clinic-green-dark py-2 px-1 text-sm font-medium">
+                        <i class="fas fa-user-plus mr-2"></i>Patient Registration
+                    </button>
+                    <button data-tab="patients" class="tab-button border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 py-2 px-1 text-sm font-medium">
+                        <i class="fas fa-users mr-2"></i>All Patients
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Patient Registration Tab -->
+        <div id="registration-tab" class="tab-content">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="bg-clinic-green px-6 py-4">
+                    <h2 class="text-xl font-semibold text-white">Patient Registration</h2>
+                    <p class="text-clinic-green-light text-sm mt-1">Enter new patient information</p>
+                </div>
+                
+                <form class="p-6 space-y-6" data-mock="true">
+                    <!-- Row 1: Basic Information -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Patient Name *</label>
+                            <input type="text" placeholder="Enter full name" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-clinic-green focus:border-clinic-green" data-mock="true">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Age *</label>
+                            <input type="number" placeholder="Age in years" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-clinic-green focus:border-clinic-green" data-mock="true">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Gender *</label>
+                            <select class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-clinic-green focus:border-clinic-green" data-mock="true">
+                                <option>Select Gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Row 2: Contact and Dates -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Contact Number</label>
+                            <input type="tel" placeholder="+91 98765 43210" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-clinic-green focus:border-clinic-green" data-mock="true">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Visit Date</label>
+                            <input type="date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-clinic-green focus:border-clinic-green" data-mock="true">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Follow-up Date</label>
+                            <input type="date" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-clinic-green focus:border-clinic-green" data-mock="true">
+                        </div>
+                    </div>
+
+                    <!-- Row 3: Medical Information -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Disease/Symptoms *</label>
+                            <textarea placeholder="Describe the patient's condition, symptoms, or diagnosis" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-clinic-green focus:border-clinic-green" data-mock="true"></textarea>
+                            <div class="text-xs text-gray-500 mt-1">0/500 characters</div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Prescription/Treatment</label>
+                            <textarea placeholder="Enter prescribed medications, dosage, and treatment instructions" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-lg resize-none focus:ring-2 focus:ring-clinic-green focus:border-clinic-green" data-mock="true"></textarea>
+                            <div class="text-xs text-gray-500 mt-1">0/500 characters</div>
+                        </div>
+                    </div>
+
+                    <!-- Row 4: Dose and Fee -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Dose</label>
+                            <input type="text" placeholder="e.g., 1 tablet twice daily" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-clinic-green focus:border-clinic-green" data-mock="true">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Fee</label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-2 text-gray-500">₹</span>
+                                <input type="number" placeholder="0.00" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-clinic-green focus:border-clinic-green" data-mock="true">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="flex justify-end pt-4">
+                        <button type="submit" class="bg-clinic-green hover:bg-clinic-green-dark text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center space-x-2" data-event="click:handleSubmitPatient">
+                            <i class="fas fa-plus"></i>
+                            <span>Add Patient Record</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- All Patients Tab -->
+        <div id="patients-tab" class="tab-content hidden">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="bg-clinic-green px-6 py-4">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h2 class="text-xl font-semibold text-white">Patient Records</h2>
+                            <p class="text-clinic-green-light text-sm mt-1">Manage all patient information</p>
+                        </div>
+                        <button class="bg-white text-clinic-green px-4 py-2 rounded-lg font-medium hover:bg-gray-50 transition-colors duration-200" data-event="click:switchToRegistration">
+                            <i class="fas fa-plus mr-2"></i>Add New Patient
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Search and Filter -->
+                <div class="p-6 border-b border-gray-200 bg-gray-50">
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <div class="flex-1">
+                            <div class="relative">
+                                <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                                <input type="text" placeholder="Search patients by name, contact, or symptoms..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-clinic-green focus:border-clinic-green" data-mock="true">
+                            </div>
+                        </div>
+                        <div class="flex gap-2">
+                            <select class="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-clinic-green focus:border-clinic-green" data-mock="true">
+                                <option>All Genders</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                            <button class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+                                <i class="fas fa-filter"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Patient List -->
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50 border-b border-gray-200">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Patient</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Visit Date</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Condition</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Dose</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Fee</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200" data-mock="true">
+                            <!-- Sample Patient Record 1 -->
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-clinic-green-light rounded-full flex items-center justify-center">
+                                            <span class="text-clinic-green-dark font-medium text-sm">RK</span>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900" data-bind="patient.name">Rajesh Kumar</div>
+                                            <div class="text-sm text-gray-500">Male, 45 years</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" data-bind="patient.contact">+91 98765 43210</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" data-bind="patient.visitDate">15/12/2024</td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-900" data-bind="patient.condition">Hypertension</div>
+                                    <div class="text-sm text-gray-500">High blood pressure monitoring</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" data-bind="patient.dose">1 tablet daily</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" data-bind="patient.fee">₹500</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <div class="flex space-x-2">
+                                        <button class="text-clinic-green hover:text-clinic-green-dark" data-event="click:editPatient">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-blue-600 hover:text-blue-900" data-event="click:viewPatient">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="text-red-600 hover:text-red-900" data-event="click:deletePatient">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <!-- Sample Patient Record 2 -->
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-clinic-green-light rounded-full flex items-center justify-center">
+                                            <span class="text-clinic-green-dark font-medium text-sm">PS</span>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900" data-bind="patient.name">Priya Sharma</div>
+                                            <div class="text-sm text-gray-500">Female, 32 years</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" data-bind="patient.contact">+91 87654 32109</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" data-bind="patient.visitDate">14/12/2024</td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-900" data-bind="patient.condition">Diabetes Type 2</div>
+                                    <div class="text-sm text-gray-500">Blood sugar management</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" data-bind="patient.dose">2 tablets twice daily</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" data-bind="patient.fee">₹750</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <div class="flex space-x-2">
+                                        <button class="text-clinic-green hover:text-clinic-green-dark" data-event="click:editPatient">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-blue-600 hover:text-blue-900" data-event="click:viewPatient">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="text-red-600 hover:text-red-900" data-event="click:deletePatient">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Sample Patient Record 3 -->
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-10 h-10 bg-clinic-green-light rounded-full flex items-center justify-center">
+                                            <span class="text-clinic-green-dark font-medium text-sm">AM</span>
+                                        </div>
+                                        <div class="ml-4">
+                                            <div class="text-sm font-medium text-gray-900" data-bind="patient.name">Amit Mehta</div>
+                                            <div class="text-sm text-gray-500">Male, 58 years</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" data-bind="patient.contact">+91 76543 21098</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" data-bind="patient.visitDate">13/12/2024</td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-900" data-bind="patient.condition">Arthritis</div>
+                                    <div class="text-sm text-gray-500">Joint pain and inflammation</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" data-bind="patient.dose">1 capsule morning</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" data-bind="patient.fee">₹400</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <div class="flex space-x-2">
+                                        <button class="text-clinic-green hover:text-clinic-green-dark" data-event="click:editPatient">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-blue-600 hover:text-blue-900" data-event="click:viewPatient">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="text-red-600 hover:text-red-900" data-event="click:deletePatient">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="px-6 py-4 border-t border-gray-200 bg-gray-50">
+                    <div class="flex items-center justify-between">
+                        <div class="text-sm text-gray-700">Showing 1 to 3 of 15 patients</div>
+                        <div class="flex space-x-2">
+                            <button class="px-3 py-1 border border-gray-300 rounded text-sm hover:bg-gray-50 disabled:opacity-50" disabled>Previous</button>
+                            <button class="px-3 py-1 bg-clinic-green text-white rounded text-sm">1</button>
+                            <button class="px-3 py-1 border border-gray-300 rounded text-sm hover:bg-gray-50">2</button>
+                            <button class="px-3 py-1 border border-gray-300 rounded text-sm hover:bg-gray-50">3</button>
+                            <button class="px-3 py-1 border border-gray-300 rounded text-sm hover:bg-gray-50">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Tab Switching -->
+    <script>
+        (function() {
+            // Tab switching functionality
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all tabs
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('active', 'border-clinic-green', 'text-clinic-green-dark');
+                        btn.classList.add('border-transparent', 'text-gray-500');
+                    });
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active', 'border-clinic-green', 'text-clinic-green-dark');
+                    this.classList.remove('border-transparent', 'text-gray-500');
+                    
+                    // Hide all tab contents
+                    tabContents.forEach(content => {
+                        content.classList.add('hidden');
+                    });
+                    
+                    // Show target tab content
+                    document.getElementById(targetTab + '-tab').classList.remove('hidden');
+                });
+            });
+
+            // Form character counting
+            const textareas = document.querySelectorAll('textarea');
+            textareas.forEach(textarea => {
+                const maxLength = 500;
+                const counter = textarea.nextElementSibling;
+                
+                textarea.addEventListener('input', function() {
+                    const currentLength = this.value.length;
+                    counter.textContent = `${currentLength}/${maxLength} characters`;
+                    
+                    if (currentLength > maxLength * 0.9) {
+                        counter.classList.add('text-red-500');
+                    } else {
+                        counter.classList.remove('text-red-500');
+                    }
+                });
+            });
+
+            // TODO: Implement form submission handling
+            // TODO: Implement patient data CRUD operations
+            // TODO: Implement search and filter functionality
+            // TODO: Implement pagination logic
+            // TODO: Add form validation
+            // TODO: Integrate with backend API for data persistence
+        })();
+    </script>
+</body>
+</html>
